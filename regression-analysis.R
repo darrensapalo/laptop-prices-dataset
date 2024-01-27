@@ -26,13 +26,17 @@ laptopprices_model_all <- lm(laptop_prices$price~laptop_prices$spec_rating+lapto
 
 # Capture the summary report and store it into a file
 summary_output_laptopprices_model_all <- summary(laptopprices_model_all)
+beta_coefficients <- lm.beta(laptopprices_model_all)
 sink("summary_output_laptopprices_model_all.txt")
 print(summary_output_laptopprices_model_all)
+print(beta_coefficients)
 sink()
 
 # Use step-wise algorithm to tweak the regression model and store performance results into a file
 laptopprices_stepwise_model <- step(laptopprices_model_all, direction="both", scope=laptopprices_scope)
 summary_output_laptopprices_stepwise_model <- summary(laptopprices_stepwise_model)
+beta_coefficients <- lm.beta(laptopprices_stepwise_model)
 sink("summary_output_laptopprices_stepwise_model.txt")
 print(summary_output_laptopprices_stepwise_model)
+print(beta_coefficients)
 sink()
